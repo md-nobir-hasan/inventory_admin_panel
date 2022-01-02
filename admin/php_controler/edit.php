@@ -7,7 +7,7 @@
         $id = $_GET["id"];
 
 
-        $sqle = "SELECT * FROM categories WHERE id=$id";
+        $sqle = "SELECT * FROM categories WHERE cat_id=$id";
         $exequtee = mysqli_query($conn, $sqle);
         if ($exequtee) {
 
@@ -43,7 +43,7 @@
                 $exist = "<span style='color:red; size:20px'>Try another code</span>";
             } else {
 
-                $sql = "UPDATE categories SET cat_name='$cat_name',cat_code='$cat_code'  WHERE id='$id'";
+                $sql = "UPDATE categories SET cat_name='$cat_name',cat_code='$cat_code'  WHERE cat_id='$id'";
                 $statment = mysqli_query($conn, $sql);
                 if ($statment) {
 

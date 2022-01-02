@@ -15,32 +15,36 @@ $output .= " <div>
   <table class='table table-hover'>
   <thead>
   <tr>
+        <th>Categories Name</th>
+        <th>Categories Code</th>
         <th>Sub Categories Name</th>
         <th>Sub Categories Code</th>
-        <th>Sub Categories Code</th>
-        <th>Edit Sub Categories details</th>
-        <th>Delete Sub Categories</th>
+        <th>Sub Categories Details</th>
+        <th>Edit</th>
+        <th>Delete</th>
      </tr>
   </thead>";
 
-$sql2 = "SELECT * FROM `sub_category` ORDER by sub_cat_id  DESC limit $start_page,$row_per_page";
+$sql2 = "SELECT cat_fsub_id,categories.cat_name,categories.cat_code,sub_category.sub_cat_name,sub_category.sub_cat_code,sub_category.sub_cat_details FROM ((cat_sub INNER JOIN categories on cat_sub.cat_id = categories.cat_id) INNER JOIN sub_category on cat_sub.sub_cat_id = sub_category.sub_cat_id) ORDER BY cat_fsub_id DESC LIMIT $start_page,$row_per_page";
+
 $execute = mysqli_query($conn, $sql2);
-// $row_no = $execute->num_rows;
+$row_no = $execute->num_rows;
 if ($execute) {
 
    while ($row = mysqli_fetch_assoc($execute)) {
-      $id = $row['sub_cat_id'];
+      $id = $row['cat_fsub_id'];
 
       $output .= "<tbody>
                   <tr>
-                  <td class='" . $row['sub_cat_id'] . "'>" . $row['sub_cat_name'] . "</td>
+                  <td class='" . $id . "'>" . $row['cat_name'] . "</td>
+                  <td class='" . $id . "'>" . $row['cat_code'] . "</td>
+                  
+                  <td class='" . $id . "'>" . $row['sub_cat_name'] . "</td>
+                  <td class='" . $id . "'>" . $row['sub_cat_code'] . "</td>
+                  <td class='" . $id . "'>" . $row['sub_cat_details'] . "</td>
 
-                  <td class='" . $row['sub_cat_id'] . "'>" . $row['sub_cat_code'] . "</td>
-
-                  <td class='" . $row['sub_cat_id'] . "'>" . $row['sub_cat_details'] . "</td>
-
-                  <td> <a href= '  ./php_controler/edit.php?id=" . $row['sub_cat_id'] . "' class='btn btn-success'>Edit</a> </td>
-                  <td class='btn btn-danger' id='" . $row['sub_cat_id'] . "'>Delete</td>
+                  <td> <a href= '  ./php_controler/edit.php?id=" . $id . "' class='btn btn-success'>Edit</a> </td>
+                  <td class='btn btn-danger' id='" . $id . "'>Delete</td>
                   </tr>
                   </tbody>
             ";
@@ -53,7 +57,7 @@ if ($execute) {
 
    }
    $output .= "</table></div> <div>";
-   $sql = "SELECT * FROM `sub_category` ORDER by sub_cat_id  DESC";
+   $sql = "SELECT * FROM cat_sub ORDER by cat_fsub_id DESC";
    $page_result = mysqli_query($conn, $sql);
    $total_page = mysqli_num_rows($page_result);
    $page_number = ceil($total_page / $row_per_page);

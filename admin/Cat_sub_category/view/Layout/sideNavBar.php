@@ -2,7 +2,6 @@
     <div class="sidebar-header">
         <h3> Inventory Admin Pannel </h3>
     </div>
-
     <ul class="list-unstyled components">
         <li>
             <a href="../../index.php">Categories</a>
@@ -18,11 +17,11 @@
                 </li>
             </ul> -->
         </li>
-        <li class="active" active>
-            <a href="#">Sub Categories</a>
-        </li>
         <li>
-            <a href="../../Cat_sub_category/Admin/cat_sub_category.php">Cat_Sub_Category</a>
+            <a href="../../sub_category/Admin/sub_category.php">Sub_Category</a>
+        </li>
+        <li class="active">
+            <a href="#">Cat_Sub_Category</a>
         </li>
         <li>
             <a href="#">Contact</a>

@@ -22,20 +22,20 @@ $output .= " <div>
      </tr>
   </thead>";
 
-$sql2 = "SELECT * FROM `categories` ORDER by id DESC limit $start_page,$row_per_page";
+$sql2 = "SELECT * FROM `categories` ORDER by cat_id DESC limit $start_page,$row_per_page";
 $execute = mysqli_query($conn, $sql2);
 $row_no = $execute->num_rows;
 if ($execute) {
 
    while ($row = mysqli_fetch_assoc($execute)) {
-      $id = $row['id'];
+      $id = $row['cat_id'];
 
       $output .= "<tbody>
                   <tr>
-                  <td class='" . $row['id'] . "'>" . $row['cat_name'] . "</td>
-                  <td class='" . $row['id'] . "'>" . $row['cat_code'] . "</td>
-                  <td> <a href= '  ./php_controler/edit.php?id=" . $row['id'] . "' class='btn btn-success'>Edit</a> </td>
-                  <td class='btn btn-danger' id='" . $row['id'] . "'>Delete</td>
+                  <td class='" . $row['cat_id'] . "'>" . $row['cat_name'] . "</td>
+                  <td class='" . $row['cat_id'] . "'>" . $row['cat_code'] . "</td>
+                  <td> <a href= '  ./php_controler/edit.php?id=" . $row['cat_id'] . "' class='btn btn-success'>Edit</a> </td>
+                  <td class='btn btn-danger' id='" . $row['cat_id'] . "'>Delete</td>
                   </tr>
                   </tbody>
             ";
@@ -48,7 +48,7 @@ if ($execute) {
 
    }
    $output .= "</table></div> <div>";
-   $sql = "SELECT * FROM `categories` ORDER by id DESC";
+   $sql = "SELECT * FROM `categories` ORDER by cat_id DESC";
    $page_result = mysqli_query($conn, $sql);
    $total_page = mysqli_num_rows($page_result);
    $page_number = ceil($total_page / $row_per_page);

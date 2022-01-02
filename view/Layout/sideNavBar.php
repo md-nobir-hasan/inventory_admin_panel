@@ -1,4 +1,4 @@
-<nav id="sidebar">
+<nav id="sidebar" style="background-color: Green;">
     <div class="sidebar-header">
         <h3> Inventory Admin Pannel </h3>
     </div>
@@ -6,7 +6,7 @@
     <ul class="list-unstyled components">
         <li class="active">
             <a href="#homeSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Categories</a>
-            <ul class="collapse list-unstyled" id="homeSubmenu">
+            <!-- <ul class="collapse list-unstyled" id="homeSubmenu">
                 <li>
                     <a href="#">Electronics</a>
                 </li>
@@ -16,12 +16,12 @@
                 <li>
                     <a href="#">Sent</a>
                 </li>
-            </ul>
+            </ul> -->
         </li>
         <li>
             <a href="./sub_category/Admin/sub_category.php">Sub Categories</a>
-            <a href="#pageSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Pages</a>
-            <ul class="collapse list-unstyled" id="pageSubmenu">
+            <!-- <a href="#pageSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Pages</a> -->
+            <!-- <ul class="collapse list-unstyled" id="pageSubmenu">
                 <li>
                     <a href="#">Page 1</a>
                 </li>
@@ -31,10 +31,10 @@
                 <li>
                     <a href="#">Page 3</a>
                 </li>
-            </ul>
+            </ul> -->
         </li>
         <li>
-            <a href="./Cat_Sub_Category/Admin/cat_sub_category.php">Cat_Sub_Category</a>
+            <a href="./Cat_sub_category/Admin/cat_sub_category.php">Cat_Sub_Category</a>
         </li>
         <li>
             <a href="#">Contact</a>

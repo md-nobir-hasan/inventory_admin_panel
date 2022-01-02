@@ -19,8 +19,8 @@ include("../view/layout/head.php");
 <body>
   <div class="wrapper">
 
-<!-- <a href=""></a> -->
 
+<!-- <a href=""></a> -->
 
     <!--//& ..........Sidebar Holder -->
     <?php
