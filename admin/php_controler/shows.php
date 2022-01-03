@@ -29,13 +29,20 @@ if ($execute) {
 
    while ($row = mysqli_fetch_assoc($execute)) {
       $id = $row['cat_id'];
+      $id = (string)$id;
+      $ciphering = "AES-128-CTR";
+      $encription_key = "1413348874";
+      $option = 0;
+      $encription_iv = "1988406007151846";
+
+      $encript_id = openssl_encrypt($id, $ciphering, $encription_key, $option, $encription_iv);
 
       $output .= "<tbody>
                   <tr>
-                  <td class='" . $row['cat_id'] . "'>" . $row['cat_name'] . "</td>
-                  <td class='" . $row['cat_id'] . "'>" . $row['cat_code'] . "</td>
-                  <td> <a href= '  ./php_controler/edit.php?id=" . $row['cat_id'] . "' class='btn btn-success'>Edit</a> </td>
-                  <td class='btn btn-danger' id='" . $row['cat_id'] . "'>Delete</td>
+                  <td class='" . $encript_id . "'>" . $row['cat_name'] . "</td>
+                  <td class='" . $encript_id . "'>" . $row['cat_code'] . "</td>
+                  <td> <a href= '  ./php_controler/edit.php?id=" . $encript_id . "' class='btn btn-success'>Edit</a> </td>
+                  <td class='btn btn-danger' id='" . $encript_id . "'>Delete</td>
                   </tr>
                   </tbody>
             ";
