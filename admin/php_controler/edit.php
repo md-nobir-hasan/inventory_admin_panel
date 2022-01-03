@@ -3,7 +3,6 @@
         ?>
      <?php
         $cat_name = $cat_code = "";
-        //  if($_SERVER["REQUEST_METHOD"]=="POST"){
         $encrition_id = $_GET["id"];
         $ciphering = "AES-128-CTR";
         $encription_key = "1413348874";
