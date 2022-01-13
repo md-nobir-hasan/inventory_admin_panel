@@ -4,8 +4,8 @@
      <?php
         $output1 = "";
         $output2 = "";
-        $sql1 = $sql2 = "SELECT * FROM `categories`";
-        $sql2 = $sql2 = "SELECT * FROM `sub_category`";
+        $sql1 = "SELECT * FROM `categories`";
+        $sql2 = "SELECT * FROM `sub_category`";
         $execute1 = mysqli_query($conn, $sql1);
         $execute2 = mysqli_query($conn, $sql2);
 
@@ -34,7 +34,13 @@
 
      <?php
         $cat_name = $cat_code = "";
-        $id = $_GET["id"];
+        
+        $encrition_id = $_GET["id"];
+        $ciphering = "AES-128-CTR";
+        $encription_key = "1413348874";
+        $option = 0;
+        $encrition_iv = "1988406007151846";
+        $id = openssl_decrypt($encrition_id, $ciphering, $encription_key, $option, $encrition_iv);
 
         $success = $err = $exist = '';
 

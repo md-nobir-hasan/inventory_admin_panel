@@ -1,12 +1,11 @@
-function Value_re() {
-    var Name = document.getElementById("name").value;
-    var password = document.getElementById("password").value;
-    var f_password = document.getElementById("f_password").value;
-    // var gender = document.getElementById("gender").value;
+$('#submit').on("click", function(e) {
+    e.preventDefault();
 
-    // alert(f_password);
-    // alert(l_Name);
-    // alert(gender);
+
+    var Name = $("#name").val();
+    var password = $("#password").val();
+    var f_password = $("#f_password").val();
+
     if (Name == "" && password == "" && f_password == "") {
         document.getElementById("main_msg").innerHTML = "Please Fill up The Form";
     } else if (Name == "") {
@@ -25,8 +24,9 @@ function Value_re() {
 
 
     }
+});
 
-}
+
 
 function pass_match() {
     var password = document.forms['form']['password'].value;
@@ -43,6 +43,7 @@ function pass_match() {
         }
     }
 }
+
 
 function upload() {
 

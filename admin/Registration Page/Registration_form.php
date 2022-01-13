@@ -38,7 +38,7 @@
 
 
 
-                        <form name="form">
+                        <form name="form" id="form">
                             <div class="row register-form">
                                 <div class="col-md-6">
                                     <!-- Main Messege -->
@@ -65,12 +65,17 @@
                                     <div class="form-group">
                                         <div class="maxl">
                                             <label class="radio inline">
-                                                <input type="radio" name="gender" id="gender" value="male" checked>
+                                                <input type="radio" name="gender" id="gender" value="male">
                                                 <span> Male </span>
                                             </label>
                                             <label class="radio inline">
                                                 <input type="radio" name="gender" id="gender" value="female">
                                                 <span>Female </span>
+                                            </label>
+
+                                            <label class="radio inline">
+                                                <input type="radio" name="gender" id="gender" value="Other">
+                                                <span>Other</span>
                                             </label>
                                         </div>
                                     </div>
@@ -78,8 +83,8 @@
                                     <!-- file Upload -->
                                     <span id="file_msg" style="color: red;"></span>
                                     <div class="form-group">
-                                        <input type="file" id="file" value="" onchange="pass_match()" />
-                                        <input type="button" id="file_button" class="btn btn-secondery" value="upload" onclick="upload()" />
+                                        <input type="file" name="file" id="imag_file" value="" />
+                                        <input type="button" id="img_upload_btn" class="btn btn-secondery" value="upload" onclick="upload()" />
                                         <div id="image" style="border-color: black; border: 1px solid; height: 110px; width: 100px; margin-left: 100px;">
                                             <img src="" alt="">
                                         </div>
@@ -114,7 +119,7 @@
                                         <input type="text" class="form-control" placeholder="Enter Your Answer *" value="" />
                                     </div>
                                     <!-- Submit Button Onclick event -->
-                                    <input type="button" class="btnRegister" value="Register" onclick="Value_re()" />
+                                    <input type="submit" id="submit" class="btnRegister" value="Register" />
                                 </div>
                             </div>
                         </form>
@@ -165,7 +170,8 @@
         </div>
 
     </div>
-    <script src="../JS Controler/registration.js"></script>
+    <script src="registration.js"></script>
+
 </body>
 
 </html>
