@@ -14,12 +14,11 @@ $start_page = ($page - 1) * $row_per_page;
 $output .= " <div>
   <table class='table table-hover'>
   <thead>
-  <tr>
+  <tr align='center'>
         <th>Sub Categories Name</th>
         <th>Sub Categories Code</th>
         <th>Sub Categories Code</th>
-        <th>Edit Sub Categories details</th>
-        <th>Delete Sub Categories</th>
+        <th align='center'>Action</th>
      </tr>
   </thead>";
 
@@ -40,17 +39,20 @@ if ($execute) {
 
       $output .= "<tbody>
                   <tr>
-                  <td class='" . $encript_id . "'>" . $row['sub_cat_name'] . "</td>
+                  <td id='name' class='" . $encript_id . "'>" . $row['sub_cat_name'] . "</td>
 
-                  <td class='" . $encript_id . "'>" . $row['sub_cat_code'] . "</td>
+                  <td id='code' class='" . $encript_id . "'>" . $row['sub_cat_code'] . "</td>
 
-                  <td class='" . $encript_id . "'>" . $row['sub_cat_details'] . "</td>
+                  <td id='details' class='" . $encript_id . "'>" . $row['sub_cat_details'] . "</td>
 
-                  <td> <a href= '  ./php_controler/edit.php?id=" . $encript_id . "' class='btn btn-success'>Edit</a> </td>
-                  <td class='btn btn-danger' id='" . $encript_id . "'>Delete</td>
+                  <td><button id='{$encript_id}' type='button' class='edit btn btn-success'>Edit</button></td>
+
+                  <td> <button id='{$encript_id}' type='button' class='Del btn btn-danger'>Delete</button></td>
                   </tr>
                   </tbody>
             ";
+      // link 
+      //<a href= '  ./php_controler/edit.php?id=" . $encript_id . "' class='edit btn btn-success'>Edit</a>
       // <!--  echo "<tr>"; 
       //   echo "<td> ".$row['cat_name']." </td>";
       //   echo "<td> ".$row['cat_code']." </td>";
@@ -74,3 +76,64 @@ if ($execute) {
 } else {
    echo "Data base execute err";
 }
+
+?>
+
+<script>
+   $(document).ready(function() {
+      $(".edit").on("click", function() {
+         var encrition_id = $(this).attr('id');
+         $.ajax({
+            url: "./php_controler/data_fetch.php",
+            method: "POST",
+            data: {
+               encrition_id: encrition_id
+            },
+            dataType: 'json',
+            success: function(data) {
+               // alert(data[0].sub_cat_name);
+               localStorage.setItem("name", data[0].sub_cat_name);
+               localStorage.setItem("code", data[0].sub_cat_code);
+               var options = {
+                  ajaxPrefix: ''
+               };
+               new Dialogify('./php_controler/edit.php', options)
+                  .title("Edit Sub Cat Type Data")
+                  .buttons([{
+                        text: "cancle",
+                        type: Dialogify.BUTTON_DANGER,
+                        click: function(e) {
+                           this.close();
+                        }
+                     },
+                     {
+                        text: 'Edit',
+                        type: Dialogify.BUTTON_PRIMARY,
+                        click: function(e) {
+                           alert(data[0].cat_type_id);
+                           var form_data = new FormData();
+                           form_data.append('name', $('#name').val());
+                           form_data.append('code', $('#code').val());
+                           form_data.append('id', data[0].cat_type_id);
+                           // alert(JSON.stringify(form_data));
+                           $.ajax({
+                              method: "POST",
+                              url: './php_controler/edit.php',
+                              data: form_data,
+                              // dataType:'json',
+                              contentType: false,
+                              cache: false,
+                              processData: false,
+                              success: function(value) {
+                                 // alert(value)
+                              }
+                           });
+                        }
+                     }
+                  ]).showModal();
+            }
+         });
+
+      });
+   });
+</script>
