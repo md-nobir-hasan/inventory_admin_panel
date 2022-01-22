@@ -39,7 +39,7 @@ if ($execute) {
 
       $output .= "<tbody>
                   <tr>
-                  <td id='name' class='" . $encript_id . "'>" . $row['sub_cat_name'] . "</td>
+                  <td value='' id='name' class='" . $encript_id . "'>" . $row['sub_cat_name'] . "</td>
 
                   <td id='code' class='" . $encript_id . "'>" . $row['sub_cat_code'] . "</td>
 
@@ -91,16 +91,17 @@ if ($execute) {
             },
             dataType: 'json',
             success: function(data) {
-               // alert(data[0].sub_cat_name);
+               // alert(data[0].sub_cat_id);
                localStorage.setItem("name", data[0].sub_cat_name);
                localStorage.setItem("code", data[0].sub_cat_code);
+               localStorage.setItem("details", data[0].sub_cat_details);
                var options = {
                   ajaxPrefix: ''
                };
-               new Dialogify('./php_controler/edit.php', options)
+               new Dialogify('./php_controler/edit_data.php', options)
                   .title("Edit Sub Cat Type Data")
                   .buttons([{
-                        text: "cancle",
+                        text: "Cancle",
                         type: Dialogify.BUTTON_DANGER,
                         click: function(e) {
                            this.close();
@@ -110,11 +111,11 @@ if ($execute) {
                         text: 'Edit',
                         type: Dialogify.BUTTON_PRIMARY,
                         click: function(e) {
-                           alert(data[0].cat_type_id);
                            var form_data = new FormData();
-                           form_data.append('name', $('#name').val());
-                           form_data.append('code', $('#code').val());
-                           form_data.append('id', data[0].cat_type_id);
+                           form_data.append('name', $('#sub_name').val());
+                           form_data.append('code', $('#sub_code').val());
+                           form_data.append('details', $('#sub_details').val());
+                           form_data.append('id', data[0].sub_cat_id);
                            // alert(JSON.stringify(form_data));
                            $.ajax({
                               method: "POST",
@@ -125,7 +126,16 @@ if ($execute) {
                               cache: false,
                               processData: false,
                               success: function(value) {
-                                 // alert(value)
+                                 alert(value);
+                                 $.ajax({
+                                    cache: false,
+                                    url: "./php_controler/shows.php",
+                                    method: "POST",
+                                    success: function(data) {
+                                       $("#show_data").html(data);
+                                    }
+                                 });
+
                               }
                            });
                         }

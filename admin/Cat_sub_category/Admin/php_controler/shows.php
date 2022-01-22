@@ -51,11 +51,13 @@ if ($execute) {
                   <td class='" . $encript_id . "'>" . $row['sub_cat_details'] . "</td>
 
                   <td> <a href= '  ./php_controler/edit.php?id=" . $encript_id . "' class='btn btn-success'>Edit</a> </td>
+                  
                   <td class='btn btn-danger' id='" . $encript_id . "'>Delete</td>
                   </tr>
                   </tbody>
             ";
-      // <!--  echo "<tr>"; 
+      // <!--  
+      // echo "<tr>"; 
       //   echo "<td> ".$row['cat_name']." </td>";
       //   echo "<td> ".$row['cat_code']." </td>";
       //   echo '<td class="btn btn-success"> <a href= "  ./php_controler/edit.php?id='.$row['id'].'">Edit</a></td>';
